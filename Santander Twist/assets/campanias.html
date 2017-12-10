@@ -173,7 +173,7 @@
 
 	<div class="main minh300">
 
-		<iframe src="https://2.santandertwist.com.mx/campanas/soccer/index_app.php" class="w100" frameborder="0" scrolling="no" height="400px" onload="resizeIframe(this)"></iframe>
+		<iframe src="https://2.santandertwist.com.mx/campanas/soccer/index_app.php" frameborder="0" scrolling="no" height="400px" width="100%" onload="resizeIframe(this)"></iframe>
 
 	</div>
 
@@ -226,8 +226,10 @@
 		<script type="text/javascript" src="js/global.js"></script>
 		<script type="text/javascript" src="js/perfil.js"></script>
 		<script type="text/javascript"> 
-			function resizeIframe(obj) { 
-				obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px'; 
+			function resizeIframe(obj) {
+                alert("COMO PUTAS NO");
+				obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+                obj.style.width = obj.contentWindow.document.body.scrollWidth + 'px';
 			} 
 		</script>
 		

@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController,UIWebViewDelegate,UIScrollViewDelegate,NSURLConnectionDelegate {
+class ViewController: UIViewController,UIWebViewDelegate,UIScrollViewDelegate,WKNavigationDelegate {
 
-    @IBOutlet weak var webView: UIWebView!
+   // @IBOutlet weak var webView: UIWebView!
     var faceLog:Bool = false
     var face:String?
     var idface:String?
@@ -19,9 +20,16 @@ class ViewController: UIViewController,UIWebViewDelegate,UIScrollViewDelegate,NS
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let preferences = WKPreferences()
         
-        webView.delegate = self
+         let webView = WKWebView()
+        
+        let htmlPath = Bundle.main.path(forResource: "campanias", ofType: "html", inDirectory: "assets")
+        let htmlURL = URL(fileURLWithPath: htmlPath!, isDirectory: false)
+        webView.loadFileURL(htmlURL, allowingReadAccessTo: htmlURL)
+        webView.navigationDelegate = self
+        view = webView
+        
+       /* webView.delegate = self
         webView.scrollView.delegate = self
         webView.scrollView.bounces = false
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,9 +42,10 @@ class ViewController: UIViewController,UIWebViewDelegate,UIScrollViewDelegate,NS
             let URL = Bundle.main.url(forResource: "login", withExtension: "html", subdirectory: "assets")
             let request = NSURLRequest(url: URL!)
             webView.loadRequest(request as URLRequest)
-        }
+        }*/
         
     }
+    
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
         
@@ -46,6 +55,7 @@ class ViewController: UIViewController,UIWebViewDelegate,UIScrollViewDelegate,NS
         
         
     }
+    
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
